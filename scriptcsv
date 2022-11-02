@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+     
+sed 's/\r/|"  62e8adfc173ff4f0eb61dae38c27022c0cdd856dc2c965df7af79c343366d361.output.csv"\r/'  Allteams2.csv > output.csv
