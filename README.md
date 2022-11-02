@@ -1,8 +1,8 @@
-# PEACH HNG TASK
+#  HNG TASK
 
-# TASK
 
-## STEPS TAKEN TO GET TASK DONE
+## Steps taken to get task done
+
  - Convert a CSV provided file, Generate a CHIP_0007 compatible json
  - Calculate the sha256 of the json file
  - Append it to each line in the CSV as (filename.output.csv)
