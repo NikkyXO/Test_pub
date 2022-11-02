@@ -16,11 +16,10 @@ def make_json(csvFilePath, jsonFilePath):
             for content in row:
                 lst = []
                 lst.append(content)
-                # temp = list(lst.split(' '))
-            for  key in keys:
-                i = 0
-                data[key] = lst[i]
-                i += 1
+                for  key in keys:
+                    i = 0
+                    data[key] = lst[i]
+                    i += 1
                 
     with open('newoutput.json','w',  encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(data, indent=4))
