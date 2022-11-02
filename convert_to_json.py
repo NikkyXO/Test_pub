@@ -1,32 +1,43 @@
-import csv
-import json
-import pandas as pd
+import csv, hashlib, json
 
+OUTPUT_FILE = 'csv/output.csv'
+f = open(OUTPUT_FILE, 'w')
+writer = csv.writer(f)
+writer.writerow(['S/N', 'Filename','UUID', 'Output File Name'])
 
-def make_json(csvFilePath, jsonFilePath):
-    data = {}
+team = ''
 
-    keys = ['Series Number', 'UUID']
-    # results = pd.read_csv("Allteams2.csv")
-    # print(results)
+with open('csv/HNG.csv', 'r') as csv_file:
+    CSV_reader = csv.reader(csv_file, delimiter=',')
+    
+    next(CSV_reader)
+    data = [m for m in CSV_reader]  
+    for row in data:
+        if row[1] and row[2]:
+            sn = row[0]
+            file_name = row[1]
+            uuid = row[-1]
+            nft = {
+                'format' : 'CHIP-0007',
+                'id' : uuid,
+                'name' : file_name.replace('-',' ').title(),
+                'filename': file_name,
+                'description' : '',
+                'minting_tool' : 'Matanmi SuperMint',
+                'sensitive_content' : False,
+                'series_number' : sn,
+                'series_total' : data[-1][0],
+                'collection' : {
+                    'name' : 'Zuri Hng NFT Collection',
+                    'id' : '24f5ff82-a2f1-494e-8be5-69f1d5e42d15'
+                }
+            }
+            jsonObj = json.dumps(nft, indent=4)
+            with open(f'json/{file_name}.json', 'w') as output:
+                output.write(jsonObj)
+            output.close()
+            hashString = hashlib.sha256(jsonObj.encode()).hexdigest()
+            row.append(f'{file_name}.{hashString}.csv')
+            writer.writerow(row)
 
-    with open('Allteams2.csv', encoding = 'utf-8') as csv_file_handler:
-        csv_reader = csv.DictReader(csv_file_handler)
-        data = {}
-        
-        for row in csv_reader:
-            i += 0
-            for key in keys:
-                temp = row.split(",")
-                
-                data[key] = temp[i]
-                i += 1
-
-                
-    with open('newoutput.json','w',  encoding='utf-8') as jsonf:
-        json.dump(data, jsonf)
-        # jsonf.write(json.dumps(data, indent=4))
-
-csvFilePath = r'Allteams2.csv'
-jsonFilePath = r'newoutput.json'
-make_json(csvFilePath, jsonFilePath)
+f.close()
