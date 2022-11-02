@@ -1,14 +1,13 @@
 #  HNG TASK
 
+-  Convert a CSV provided file, Generate a CHIP_0007 compatible json
+-  Calculate the sha256 of the json file
+-  Append it to each line in the CSV as (filename.output.csv)
+
 
 ## Steps taken to get task done
 
- - Convert a CSV provided file, Generate a CHIP_0007 compatible json
- - Calculate the sha256 of the json file
- - Append it to each line in the CSV as (filename.output.csv)
-
-
-###  Convert a CSV provided file, Generate a CHIP_0007 compatible json
+###  Converted a CSV provided file, Generated a CHIP_0007 compatible json
 
 Reading of the file is done using default fs npm package
 
@@ -80,12 +79,12 @@ Convert the resultant array to json and generate the JSON output file.
 
 
 
-### Calculate the sha256 of the json file
+### Calculated the sha256 of the json file
 
 sha-256 was created for the generated json file with the linux command
 	sha256sum output.csv
 
-### Append it to each line in the CSV as (filename.output.csv)
+### Appended it to each line in the CSV as (filename.output.csv) with a bash script
 
 	Appending to each line in the file was done with the use of the linux stream editor. (sed) and running file command with a bash script
 
