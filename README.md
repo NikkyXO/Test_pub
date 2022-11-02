@@ -103,8 +103,11 @@ Input the Csv file to be read and coverted in the fs.readFileSync function in th
 Result  is outputted as **output.json**
 
 Run sha256 with output.json on command line to create the hash of file
+
 	sha256 output.json
 
 Then Run the bash script scriptcsv on your terminal to append the required text to each end of the line of the file, with the file input and output specified
 
 	./scriptcsv
+
+Thanks for taking time to go through
