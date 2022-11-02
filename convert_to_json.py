@@ -15,7 +15,7 @@ def make_json(csvFilePath, jsonFilePath):
         data = {}
         
         for row in csv_reader:
-            i +- 0
+            i += 0
             for key in keys:
                 temp = row.split(",")
                 
