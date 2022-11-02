@@ -7,8 +7,8 @@ def make_json(csvFilePath, jsonFilePath):
     data = {}
 
     keys = ['Series Number', 'Filename', 'UUID']
-    results = pd.read_csv("Allteams2.csv")
-    print(results)
+    # results = pd.read_csv("Allteams2.csv")
+    # print(results)
 
     with open('Allteams2.csv', encoding = 'utf-8') as csv_file_handler:
         csv_reader = csv.DictReader(csv_file_handler)
