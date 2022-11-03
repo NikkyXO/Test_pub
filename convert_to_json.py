@@ -7,18 +7,16 @@ with open(OUTPUT_FILE, 'w') as f:
     writer = csv.writer(f)
     writer.writerow(['S/N', 'Filename','UUID', 'Output File Name'])
 
-    team = ''
-
-    with open('csv/HNG.csv', 'r') as csv_file:
-        CSV_reader = csv.reader(csv_file, delimiter=',')
+    with open('csv/HNG.csv', 'r') as csvFile:
+        CSV_reader = csv.reader(csvFile, delimiter=',')
         
         next(CSV_reader)
         data = [m for m in CSV_reader]  
-        for row in data:
-            if row[1] and row[2]:
-                sn = row[0]
-                file_name = row[1]
-                uuid = row[-1]
+        for col in data:
+            if col[1] and col[2]:
+                SN = col[0]
+                file_name = col[1]
+                uuid = col[-1]
                 nft = {
                     'format' : 'CHIP-0007',
                     'id' : uuid,
@@ -27,7 +25,7 @@ with open(OUTPUT_FILE, 'w') as f:
                     'description' : '',
                     'minting_tool' : 'Matanmi SuperMint',
                     'sensitive_content' : False,
-                    'series_number' : sn,
+                    'series_number' : SN,
                     'series_total' : data[-1][0],
                     'collection' : {
                         'name' : 'Zuri Hng NFT Collection',
@@ -37,9 +35,7 @@ with open(OUTPUT_FILE, 'w') as f:
                 jsonObj = json.dumps(nft, indent=4)
                 with open(f'json/{file_name}.json', 'w') as output:
                     output.write(jsonObj)
-                output.close()
+                
                 hashString = hashlib.sha256(jsonObj.encode()).hexdigest()
-                row.append(f'{file_name}.{hashString}.csv')
-                writer.writerow(row)
-
-
+                col.append(f'{file_name}.{hashString}.csv')
+                writer.writerow(col)
